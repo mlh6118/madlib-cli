@@ -13,4 +13,7 @@ N/A
 `python madlib.py`
 
 ### Tests
-Initial tests were provided in a file called test_madlib.py.
+Initial tests were provided in a file called test_madlib.py.  
+Test written for testing if a FileNotFoundError was raised.
+
+### Help provided by: Joey Marianer
