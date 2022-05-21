@@ -3,7 +3,7 @@
 # capabilities for reading and writing files.  The application will:
 # 1. read and parse a template Madlib file
 # 2. prompt a user to submit words for each component
-# 3. populate the tempate with the user provided words in the correct
+# 3. populate the template with the user provided words in the correct
 # position
 # 4. send the completed response to the user in the command line
 # 5. write the completed text to a new file.
@@ -14,13 +14,21 @@ def welcome_msg():
           "story. \n")
 
 def read_template(file_location):
+'''
+This function will read in a file that is a template for a Madlib.  A
+FileNotFoundError will be raised if the path is incorrect.
+'''
     with open(file_location) as file:
         data = file.read()
 #        data = data.strip() # Need to remove newline character.
         return data
 
 def parse_template():
-    pass
+'''
+This function will parse the template that was read in the read_template
+function.
+'''
+
 
 def merge():
     pass

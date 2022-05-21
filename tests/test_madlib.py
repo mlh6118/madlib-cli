@@ -8,6 +8,12 @@ def test_read_template_returns_stripped_string():
     assert actual == expected
 
 
+# Test added to check if the exception for FileNotFoundError works.
+def test_read_template_raises_exception():
+    with pytest.raises(FileNotFoundError):
+        read_template("assets/dark_and_stormy_night_template")
+
+
 @pytest.mark.skip("pending")
 def test_parse_template():
     actual_stripped, actual_parts = parse_template(
