@@ -16,7 +16,7 @@ def welcome_msg():
 def read_template(file_location):
     with open(file_location) as file:
         data = file.read()
-        data = data.strip() # Need to remove newline character.
+#        data = data.strip() # Need to remove newline character.
         return data
 
 def parse_template():
