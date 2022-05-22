@@ -5,11 +5,10 @@ import re
 # A command line application which takes advantage of Python's built-in
 # capabilities for reading and writing files.  The application will:
 # 1. read and parse a template Madlib file
-# 2. prompt a user to submit words for each component
-# 3. populate the template with the user provided words in the correct
+# 2. populate the template with the user provided words in the correct
 # position
-# 4. send the completed response to the user in the command line
-# 5. write the completed text to a new file.
+# 3. send the completed response to the user in the command line
+# 4. write the completed text to a new file.
 
 def welcome_msg():
     print("Welcome to Madlib CLI.  You will be asked to enter various types "
@@ -33,8 +32,6 @@ def parse_template(madlib_story):
     This function will parse the template that was read in the read_template
     function.
     '''
-#    sentence = "The {Adjective} brown fox jumped over the lazy {noun}."
-    # print(sentence.split(' '))
 
     sentence = madlib_story
 
@@ -42,9 +39,7 @@ def parse_template(madlib_story):
     # element.
     pattern = r"[\.]"
     match = re.search(pattern, sentence)
-    #    print(match)
     if match:
-        # print('Found')
         sentence = sentence.replace(".", " .")
     else:
         print('Not found')
@@ -57,28 +52,18 @@ def parse_template(madlib_story):
     wordsArr = []
     i = 0 # counter for indexing into the newArr for word replacement.
 
-    # What is wanted by the test.
-    # expected_stripped = "It was a {} and {} {}."
-    # expected_parts = ("Adjective", "Adjective", "Noun")
+    # Find the words in curly braces and separate the words from the braces. 
+    # Put the word into a new array.
     for word in newArr:
-        # print(word)
         pattern = r"\{[A-z]+\}"
         wordMatch = re.search(pattern, word)
         if wordMatch:
-            # print("True")
             # Remove the { } from the word and put in wordsArr.
             madlib = word.replace("{", "")
             madlib = madlib.replace("}", "")
-            # print(madlib)
             wordsArr.append(madlib)
-            # print(word)
-            # print(newArr)
             newArr[i] = "{}"
         i += 1
-
-    # print(madlib)
-    print(wordsArr)
-    print(newArr)
 
     # Re-assign wordsArr to parts.
     parts = tuple(wordsArr)
@@ -86,13 +71,15 @@ def parse_template(madlib_story):
     # Convert newArr back to a string.
     stripped = ' '.join(newArr)
     stripped = stripped.replace(" .", ".")
-    #print(stripped)
     return stripped, parts
 
 
-def merge():
-    pass
+def merge(story, userInput):
+    """
+    This function will combine user input with the given story and return it.
+    """
+    completedStory = story.format(*userInput)
+    return(completedStory)
 
 
 welcome_msg()
-# parse_template()
